@@ -17,7 +17,7 @@ https://www.docker.com/products/docker-toolbox
 
 
 ## 3.TensorFlowのインストール
-docker run -it b.gcr.io/tensorflow/tensorflow:latest-devel
+`docker run -it b.gcr.io/tensorflow/tensorflow:latest-devel`
 
 
 ## 4.共有フォルダの設定(OSのフォルダと同期)
