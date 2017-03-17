@@ -17,7 +17,7 @@ https://www.docker.com/products/docker-toolbox
 
 
 ## 3.TensorFlowのインストール
-`docker run -it b.gcr.io/tensorflow/tensorflow:latest-devel`
+`docker run -it --name tensor b.gcr.io/tensorflow/tensorflow`
 
 
 ## 4.共有フォルダの設定(OSのフォルダと同期)
@@ -30,3 +30,11 @@ https://www.docker.com/products/docker-toolbox
 
 ### イメージ一覧を得る
 docker images
+
+# Jupyter Notebook
+docker-machine ip
+192.168.99.100
+
+docker run -p 8888:8888 -p 6006:6006 b.gcr.io/tensorflow/tensorflow
+
+http:192.168.99.100:8888/

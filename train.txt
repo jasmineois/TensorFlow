@@ -1,0 +1,6 @@
+ayana0.jpg 0
+ayana1.jpg 0
+ayana2.jpg 0
+hana0.jpg 1
+hana1.jpg 1
+hana2.jpg 1
