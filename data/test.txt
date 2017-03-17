@@ -1,0 +1,2 @@
+image/cut/ayana0.jpg 0
+image/cut/hana0.jpg 1
