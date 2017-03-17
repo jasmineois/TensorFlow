@@ -1,2 +1,3 @@
 image/*
 !image/*.empty
+**/__pycache__/
