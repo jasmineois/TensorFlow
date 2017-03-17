@@ -1,8 +1,7 @@
 import cv2
-import os
 from os import path
 
-def faceCut(path):
+def faceCut(path, dir, index):
     # 定数
     FACE_PATH = 'ayana1.jpg'
     FACE_COLOR = (255, 0, 0)
@@ -13,7 +12,7 @@ def faceCut(path):
     cascade_f = cv2.CascadeClassifier(cascades_dir)
     
     # 画像を読み込む
-    img = cv2.imread('image/original/' + path)
+    img = cv2.imread('./image/original' + '/' + dir + '/' + path)
 
     # グレイスケールに変換
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -23,16 +22,57 @@ def faceCut(path):
     for (x, y, w, h) in face:
         cv2.rectangle(img, (x, y), (x + w, y + h), FACE_COLOR, 2)
 
+    # 切り抜き出来なかったらreturn
+    if len(face) == 0 : return "---"
+    
     # 切り抜き
     face = img[y:y+h, x:x+h]
     face = cv2.resize(face, (IMAGE_SIZE, IMAGE_SIZE))
 
     #認識結果の保存
-    cv2.imwrite('image/cut/' + path, face)
+    root, ext = os.path.splitext(path)
+    cv2.imwrite('image/cut/' + dir + str(index) + ext, face)
+    
+    return ('image/cut/' + dir + str(index) + ext)
 
-# メイン
+"""
+メイン
+"""
 if __name__ == '__main__':
-  files = os.listdir('./image/original')
-  for file in files:
-      print(file)
-      faceCut(file)
+
+    original_path = './image/original'
+
+    # テストデータ書き出し用
+    train = open('data/train.txt','w')
+    test = open('data/test.txt','w')
+
+    # パスの抜き出し
+    files = os.listdir(original_path)
+    files_dir = [f for f in files if os.path.isdir(os.path.join(original_path, f))]
+    print(files_dir)
+
+    index = 0
+    for n, dir in enumerate(files_dir):
+        print('---------------------------')
+        dir_path = original_path + '/' + dir
+        files = os.listdir(dir_path)
+        for i, file in  enumerate(files):
+            print(i, dir, file)
+            file_path = dir_path + '/' + file
+            txt = faceCut(file, dir, i)
+            
+            # 画像が抽出できなかったら破棄
+            if txt == "---" : 
+                os.rename(
+                    './image/original' + '/' + dir + '/' + file,
+                    './image/original' + '/' + 'discard_' + file
+                )
+                continue
+            
+            # テキストに書き出し
+            if i <= 1:
+                test.write(txt + ' ' + str(n) + '\n')
+            else:
+                train.write(txt + ' ' + str(n) + '\n')
+            
+    f.close()

@@ -2,10 +2,7 @@ import sys
 import cv2
 import numpy as np
 import tensorflow as tf
-
-#import tensorflow.python.platform
-
-NUM_CLASSES = 2
+import tensorflow.python.platform
 
 """
 予測モデルを作成する関数
@@ -115,12 +112,16 @@ def accuracy(logits, labels):
     tf.scalar_summary("accuracy", accuracy)
     return accuracy
 
+
+NUM_CLASSES = 3
 """
 メイン
 """
 if __name__ == '__main__':
+    
+    print('------------------------------------')
     # ファイルを開く
-    f = open('train.txt', 'r')
+    f = open('data/train.txt', 'r')
     # データを入れる配列
     train_image = []
     train_label = []
@@ -129,7 +130,7 @@ if __name__ == '__main__':
         line = line.rstrip()
         l = line.split()
         # パス
-        p = 'image/cut/' + l[0]
+        p = l[0]
         print(p)
         # データを読み込んで28x28に縮小
         img = cv2.imread(p)
@@ -147,13 +148,14 @@ if __name__ == '__main__':
     # print(train_image)
     # print(train_label)
     
-    f = open('test.txt', 'r')
+    print('------------------------------------')
+    f = open('data/test.txt', 'r')
     test_image = []
     test_label = []
     for line in f:
         line = line.rstrip()
         l = line.split()
-        p = 'image/cut/' + l[0]
+        p = l[0]
         print(p)
         img = cv2.imread(p)
         img = cv2.resize(img, (28, 28))
@@ -165,11 +167,11 @@ if __name__ == '__main__':
     test_label = np.asarray(test_label)
     f.close()
 
-    g = tf.Graph()
-    with g.as_default():
+    print('------------------------------------')
+    with tf.Graph().as_default():
 
         images_placeholder = tf.placeholder("float", shape=(None, 28*28*3))
-        labels_placeholder = tf.placeholder("float", shape=(None, 2))
+        labels_placeholder = tf.placeholder("float", shape=(None, NUM_CLASSES))
         keep_prob = tf.placeholder("float")
 
         # inference → loss → training
@@ -188,7 +190,7 @@ if __name__ == '__main__':
         summary_writer = tf.train.SummaryWriter('image/train/', sess.graph_def)
         
         # 訓練の実行
-        for step in range(50):
+        for step in range(300):
             for i in range(1):
                 # batch_size分の画像に対して訓練の実行
                 batch = 10*i
@@ -220,4 +222,3 @@ if __name__ == '__main__':
 
     # 最終的なモデルを保存
     # save_path = saver.save(sess, "model.ckpt")
-    
