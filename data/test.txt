@@ -1,2 +1,12 @@
 image/cut/ayana0.jpg 0
+image/cut/ayana1.jpg 0
+image/cut/ayana2.jpg 0
+image/cut/ayana3.jpg 0
 image/cut/hana0.jpg 1
+image/cut/hana1.jpg 1
+image/cut/hana2.jpg 1
+image/cut/hana3.jpg 1
+image/cut/inori0.jpg 2
+image/cut/inori1.jpg 2
+image/cut/inori2.jpg 2
+image/cut/inori3.jpg 2

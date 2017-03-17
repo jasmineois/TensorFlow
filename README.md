@@ -5,6 +5,5 @@ pip install --upgrade https://storage.googleapis.com/tensorflow/windows/cpu/tens
 pip install jupyter 
 
 jupyter notebook
-tensorboard --logdir=log
 tensorboard --logdir image/train
 ~~~
