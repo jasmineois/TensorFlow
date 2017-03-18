@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[12]:
+# In[6]:
 
 """
 予測モデルを作成する関数
@@ -114,7 +114,7 @@ def accuracy(logits, labels):
     return accuracy
 
 
-# In[13]:
+# In[ ]:
 
 import sys
 import cv2
@@ -128,7 +128,7 @@ if __name__ == '__main__':
     
     print('------------------------------------')
     # ファイルを開く
-    f = open('data/training.txt', 'r')
+    f = open('../data/training.txt', 'r')
     # データを入れる配列
     train_image = []
     train_label = []
@@ -156,7 +156,7 @@ if __name__ == '__main__':
     # print(train_label)
     
     print('------------------------------------')
-    f = open('data/test.txt', 'r')
+    f = open('../data/test.txt', 'r')
     test_image = []
     test_label = []
     for line in f:
@@ -197,7 +197,7 @@ if __name__ == '__main__':
         # summary_op = tf.merge_all_summaries() # ~1.0
         summary_op =  tf.summary.merge_all()
         #summary_writer = tf.train.SummaryWriter('image/train/', sess.graph_def) # ~1.0
-        summary_writer = tf.summary.FileWriter('image/train/', sess.graph)
+        summary_writer = tf.summary.FileWriter('../image/train/', sess.graph)
         
         # 訓練の実行
         for step in range(100):
@@ -231,6 +231,11 @@ if __name__ == '__main__':
         keep_prob: 1.0}))
 
     # 最終的なモデルを保存
-    save_path = saver.save(sess, "model/model.ckpt")
+    save_path = saver.save(sess, "../model/model.ckpt")
     
+
+
+# In[ ]:
+
+
 

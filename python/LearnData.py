@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 import os
 import sys
@@ -10,8 +10,8 @@ import random
 if __name__ == '__main__':
     
     # ファイルを開く
-    f = open('data/train.txt', 'r')
-    training = open('data/training.txt','w')
+    f = open('../data/train.txt', 'r')
+    training = open('../data/training.txt','w')
         
     # データを入れる配列
     train_pass = []
@@ -43,4 +43,9 @@ if __name__ == '__main__':
 
     f.close()
     training.close()
+
+
+# In[ ]:
+
+
 

@@ -16,8 +16,11 @@ brew install opencv
 brew info opencv
 ~~~
 
+* notebook → tensorboard
+~~~
 jupyter notebook
 tensorboard --logdir image/train
+~~~
 
 * 一気にRun
 ~~~

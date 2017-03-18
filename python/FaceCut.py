@@ -1,23 +1,22 @@
 
 # coding: utf-8
 
-# In[31]:
+# In[1]:
 
 import cv2
 from os import path
 
 def faceCut(path, dir, index):
     # 定数
-    FACE_PATH = 'ayana1.jpg'
     FACE_COLOR = (255, 0, 0)
     IMAGE_SIZE = 112
 
     # cascadeファイルをロードする
-    cascades_dir = "python/haarcascades/haarcascade_frontalface_alt2.xml"
+    cascades_dir = "../python/haarcascades/haarcascade_frontalface_alt2.xml"
     cascade_f = cv2.CascadeClassifier(cascades_dir)
     
     # 画像を読み込む
-    img = cv2.imread('./image/original' + '/' + dir + '/' + path)
+    img = cv2.imread('../image/original' + '/' + dir + '/' + path)
 
     # グレイスケールに変換
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -36,12 +35,12 @@ def faceCut(path, dir, index):
 
     #認識結果の保存
     root, ext = os.path.splitext(path)
-    cv2.imwrite('image/cut/' + dir + str(index) + ext, face)
+    cv2.imwrite('../image/cut/' + dir + str(index) + ext, face)
     
-    return ('image/cut/' + dir + str(index) + ext)
+    return ('../image/cut/' + dir + str(index) + ext)
 
 
-# In[32]:
+# In[2]:
 
 import cv2
 from os import path
@@ -49,27 +48,27 @@ from os import path
 def faceMove(path, dir, index):
     
     # 画像を読み込む
-    face = cv2.imread('./image/original' + '/' + dir + '/' + path)
+    face = cv2.imread('../image/original' + '/' + dir + '/' + path)
     
      #認識結果の保存
     root, ext = os.path.splitext(path)
-    cv2.imwrite('image/cut/' + dir + str(index) + ext, face)
+    cv2.imwrite('../image/cut/' + dir + str(index) + ext, face)
     
-    return ('image/cut/' + dir + str(index) + ext)
+    return ('../image/cut/' + dir + str(index) + ext)
 
 
-# In[55]:
+# In[3]:
 
 import sys
 import os
 
-original_path = './image/original'
+original_path = '../image/original'
 
 if __name__ == '__main__':
 
     # テストデータ書き出し用
-    train = open('data/train.txt', 'w')
-    test = open('data/test.txt', 'w')
+    train = open('../data/train.txt', 'w')
+    test = open('../data/test.txt', 'w')
 
     # パスの抜き出し
     files = os.listdir(original_path)
@@ -90,8 +89,8 @@ if __name__ == '__main__':
             # 画像が抽出できなかったら破棄
             if txt == "---" : 
                 os.rename(
-                    './image/original' + '/' + dir + '/' + file,
-                    './image/original' + '/' + 'discard_' + file
+                    '../image/original' + '/' + dir + '/' + file,
+                    '../image/original' + '/' + 'discard_' + file
                 )
                 continue
 
