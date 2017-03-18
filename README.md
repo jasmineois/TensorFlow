@@ -18,3 +18,8 @@ brew info opencv
 
 jupyter notebook
 tensorboard --logdir image/train
+
+* 一気にRun
+~~~
+bash ./run.sh
+~~~
