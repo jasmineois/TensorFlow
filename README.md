@@ -1,9 +1,20 @@
 # TensorFlow Demo
 
+* TensorFlowのインストール
 ~~~
-pip install --upgrade https://storage.googleapis.com/tensorflow/windows/cpu/tensorflow-0.12.0rc1-cp35-cp35m-win_amd64.whl
+https://www.tensorflow.org/install/
+~~~
+
+* jupyterのインストール
+~~~
 pip install jupyter 
+~~~
+
+* opencvのインストール
+~~~
+brew install opencv
+brew info opencv
+~~~
 
 jupyter notebook
 tensorboard --logdir image/train
-~~~
