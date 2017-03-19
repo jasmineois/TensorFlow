@@ -1,3 +1,11 @@
+# data ディレクトリ生成
+if [ ! -d data ] ; then
+    mkdir data
+    echo "make data dir"
+else
+    echo "exist data dir"
+fi
+
 # image ディレクトリ生成
 if [ ! -d image ] ; then
     mkdir image
