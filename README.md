@@ -16,6 +16,11 @@ brew install opencv
 brew info opencv
 ~~~
 
+* 初めにイメージファイルを入れるデェレクトリの生成
+~~~
+bash ./init.sh
+~~~
+
 * notebook → tensorboard
 ~~~
 jupyter notebook
